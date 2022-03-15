@@ -1,0 +1,16 @@
+body > *:nth-child(odd){
+  font-family: Verdana, Geneva, Tahoma,'DejaVu Sans',sans-serif;
+  background-color: #f5aca8;
+}
+#num2{
+  font-size: 36px;
+  color: #0a00f9;
+}
+.cooler{
+  font-size: 24px;
+}
+#num4{
+  font-size: 24px;
+  background-color: #9afc88;
+  font-weight: bold;
+}
