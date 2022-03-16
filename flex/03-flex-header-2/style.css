@@ -7,11 +7,21 @@ body {
   background: #eee;
   font-family: Besley, serif;
 }
-
+.container1,
+.container2,
+.links{
+  display: flex;
+  gap: 16px;
+  margin: 8px;
+  align-items: center;
+}
 .header {
   background: white;
   border-bottom: 1px solid #ddd;
   box-shadow: 0 0 8px rgba(0,0,0,.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .profile-image {
