@@ -4,6 +4,7 @@
 
 const express = require("express");
 const app = express();
+const bodyParser = require("body-parser");
 const path = require("path");
 const methodOverride = require("method-override");
 const { v4: uuid } = require("uuid"); //uuidv4() to get a random number
@@ -11,6 +12,8 @@ const { v4: uuid } = require("uuid"); //uuidv4() to get a random number
 ////////////////////////////////
 //preset useability
 ////////////////////////////////
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json({ extended: true }));
 app.use(methodOverride("_method"));
 app.use(express.static(path.join(__dirname, "/public")));
 app.set("view engine", "ejs");
@@ -53,6 +56,16 @@ app.get("/posts", (req, res) => {
   res.render("posts/posts.ejs", { posts });
 });
 
+// new post
+app.get("/posts/new", (req, res) => {
+  res.render("posts/new");
+});
+
+app.post("/posts", (req, res) => {
+  const { username, comment } = req.body;
+  posts.push({ username, comment, id: uuid() });
+  res.redirect("/posts");
+});
 // For Edit
 app.get("/posts/:id/edit", (req, res) => {
   const { id } = req.params;
