@@ -1,0 +1,13 @@
+<%- include('partials/head')%> <%- include('partials/navbar')%>
+<h1>Posts</h1>
+<ul>
+  <% for(let item of posts) { %>
+  <li>
+    <%= item.comment %> &ndash;
+    <strong><%= item.username %></strong>
+    <a href="/comments/<%= item.id %> ">details</a>
+  </li>
+  <% } %>
+</ul>
+<a href="/comments/new">New discussion</a>
+<%-include('partials/footer')%>

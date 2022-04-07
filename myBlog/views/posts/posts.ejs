@@ -1,0 +1,19 @@
+<%- include('../partials/head')%> <%- include('../partials/navbar')%>
+<div class="container">
+  <h1>Posts</h1>
+  <ul>
+    <% for(let item of posts) { %>
+    <li>
+      <%= item.comment %> &ndash;
+      <strong><%= item.username %></strong>
+      <a href="/posts/<%= item.id %> ">details</a>
+      <a href="/posts/<%= item.id %>/edit">Edit comment</a>
+      <form method="post" action="/posts/<%= item.id %>?_method=DELETE ">
+        <button>DELETE</button>
+      </form>
+    </li>
+    <% } %>
+  </ul>
+  <a href="/comments/new">New post</a>
+</div>
+<%-include('../partials/footer')%>
