@@ -56,7 +56,7 @@ app.get("/posts", (req, res) => {
   res.render("posts/posts.ejs", { posts });
 });
 
-// new post
+// For new post
 app.get("/posts/new", (req, res) => {
   res.render("posts/new");
 });
@@ -66,12 +66,29 @@ app.post("/posts", (req, res) => {
   posts.push({ username, comment, id: uuid() });
   res.redirect("/posts");
 });
+
 // For Edit
 app.get("/posts/:id/edit", (req, res) => {
   const { id } = req.params;
   const comment = posts.find((item) => item.id === id);
   // res.send(comment);
   res.render("posts/edit", { comment });
+});
+
+//For delete
+app.patch("/posts/:id", (req, res) => {
+  const { id } = req.params;
+  const commentEdit = req.body.comment;
+  const foundComment = posts.find((item) => item.id === id);
+  foundComment.comment = commentEdit;
+  res.redirect("/posts");
+});
+
+app.delete("/posts/:id", (req, res) => {
+  const { id } = req.params;
+  const comment = posts.find((item) => item.id === id);
+  posts = posts.filter((item) => item.id !== id);
+  res.redirect("/posts");
 });
 
 app.listen(3000, () => {
