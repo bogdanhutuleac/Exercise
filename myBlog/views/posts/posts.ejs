@@ -4,7 +4,7 @@
   <ul>
     <% for(let item of posts) { %>
     <li>
-      <%= item.comment %> &ndash;
+      <%= item.post %> &ndash;
       <strong><%= item.username %></strong>
       <a href="/posts/<%= item.id %>/edit">Edit comment</a>
       <form method="post" action="/posts/<%= item.id %>?_method=DELETE ">
