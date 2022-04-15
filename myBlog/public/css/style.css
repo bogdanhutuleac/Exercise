@@ -1,3 +1,7 @@
 .container {
   margin: 8rem auto;
 }
+
+p {
+  white-space: pre-line;
+}

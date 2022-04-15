@@ -1,0 +1,8 @@
+<%- include('../partials/head') %> <%- include('../partials/navbar') %>
+<div class="container">
+  <h1>Title: <%= post.title %></h1>
+  <h2>Username: <%= post.username %></h2>
+  <p> <strong>Post:</strong> <p><%= `${post.post}` %></p></p>
+  <a href="/posts">Go to posts</a>
+</div>
+<%- include('../partials/footer') %>

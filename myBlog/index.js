@@ -48,36 +48,39 @@ app.get("/posts/new", (req, res) => {
 });
 
 app.post("/posts", async (req, res) => {
-  const post = new Post(req.body.post);
+  const post = new Post(req.body);
   await post.save();
   res.redirect("/posts");
+  // res.send(req.body);
 });
 
 // Detailed display
+app.get("/posts/:id", async (req, res) => {
+  const post = await Post.findById(req.params.id);
+  res.render("posts/show.ejs", { post });
+});
 
-// // For Edit
-// app.get("/posts/:id/edit", (req, res) => {
-//   const { id } = req.params;
-//   const comment = posts.find((item) => item.id === id);
-//   // res.send(comment);
-//   res.render("posts/edit", { comment });
-// });
+// For Edit
+app.get("/posts/:id/edit", async (req, res) => {
+  const post = await Post.findById(req.params.id);
+  res.render("posts/edit", { post });
+  // res.send(req.params.id);
+});
 
-// //For delete
-// app.patch("/posts/:id", (req, res) => {
-//   const { id } = req.params;
-//   const commentEdit = req.body.comment;
-//   const foundComment = posts.find((item) => item.id === id);
-//   foundComment.comment = commentEdit;
-//   res.redirect("/posts");
-// });
+app.put("/posts/:id", async (req, res) => {
+  const { id } = req.params;
+  const post = await Post.findByIdAndUpdate(id, {
+    ...req.body, //to get the right format
+  });
+  res.redirect(`/posts/${post._id}`);
+});
 
-// app.delete("/posts/:id", (req, res) => {
-//   const { id } = req.params;
-//   const comment = posts.find((item) => item.id === id);
-//   posts = posts.filter((item) => item.id !== id);
-//   res.redirect("/posts");
-// });
+// For delete
+app.delete("/posts/:id", async (req, res) => {
+  const { id } = req.params;
+  const post = await Post.findByIdAndDelete(id);
+  res.redirect("/posts");
+});
 
 app.listen(3000, () => {
   console.log("Listening on port 3000");

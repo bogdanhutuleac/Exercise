@@ -6,8 +6,9 @@
     <li>
       <%= item.post %> &ndash;
       <strong><%= item.username %></strong>
-      <a href="/posts/<%= item.id %>/edit">Edit comment</a>
-      <form method="post" action="/posts/<%= item.id %>?_method=DELETE ">
+      <a href="/posts/<%= item._id %>">Details</a>
+      <a href="/posts/<%= item._id %>/edit">Edit comment</a>
+      <form method="post" action="/posts/<%= item._id %>?_method=DELETE ">
         <button>DELETE</button>
       </form>
     </li>
